@@ -1,85 +1,84 @@
-import { View, Text, TextInput, StyleSheet, Button, ImageBackground, Pressable, Alert } from 'react-native';
-import { CadastrarProps } from './types';
-import LoginScreen from '../screens/LoginScreen';
-import { useState } from 'react';
-import auth from '@react-native-firebase/auth';
+import firestore from "@react-native-firebase/firestore";
+import { useState } from "react";
+import { CadastrarProps } from "./types";
+import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-const Tela_Cadastrar = ({ navigation }: CadastrarProps) => {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+const Tela_CadastrarNota = ({ navigation }: CadastrarProps) => {
+    const [titulo, setTitulo] = useState('');
+    const [descricao, setDescricao] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    function cadastrar() {
+    function cadastrarNota() {
         setIsLoading(true);
-        if (email && senha) {
 
-            auth()
-                .createUserWithEmailAndPassword(email, senha)
-                .then(() => {
-                    Alert.alert("Conta", "Cadastrado com sucesso")
-                    navigation.navigate('Home');
-                })
-                .catch((error) => {
-                    console.log(error)
-                    Alert.alert("Erro", String(Error));
-                    }
-                )
-                .finally(() => setIsLoading(false));
+        firestore()
+            .collection('notas')
+            .add({
+                titulo,
+                descricao,
+                created_at: firestore.FieldValue.serverTimestamp()
+            })
 
-        } else setIsLoading(false);
+            .then(() => {
+                Alert.alert("Nota", "Cadastrado com sucesso")
+                navigation.navigate('Home');
+            })
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false));
 
     }
 
-    
-
-
-    return (
-
-        <View>
-
-
-            <Text style={styles.Email}>Email:</Text>
-
-            <TextInput style={styles.CaixaEmail}
-                onChangeText={(text) => { setEmail(text) }} />
-
-            <Text style={styles.Senha}>Senha:</Text>
-
-            <TextInput style={styles.CaixaSenha}
-                onChangeText={(text) => { setSenha(text) }} />
-
-
-            <Pressable style={styles.BotaoEntrar}
-                onPress={() => cadastrar()}>
-                <Text style={styles.ConfBu}>Confirmar</Text>
-            </Pressable>
 
 
 
+return (
+<>
+    <View>
 
-        </View>
 
-    );
+        <Text style={styles.titulo}>Titulo:</Text>
+
+        <TextInput style={styles.Caixatitulo}
+            onChangeText={(text) => { setTitulo(text) }} />
+
+        <Text style={styles.descricao}>Descrição:</Text>
+
+        <TextInput style={styles.CaixaDescricao}
+            onChangeText={(text) => { setDescricao(text) }} />
+
+
+
+        <Pressable style={styles.BotaoEntrar}
+            onPress={() => cadastrarNota()}>
+            <Text style={styles.ConfBu}>Confirmar</Text>
+        </Pressable>
+
+
+
+
+    </View>
+    </>
+);
 };
 
-
+export default Tela_CadastrarNota;
 
 
 
 const styles = StyleSheet.create({
-    CaixaSenha: {
+    CaixaDescricao: {
         borderColor: 'black',
         borderWidth: 5,
         backgroundColor: '#D3D3D3'
 
     },
 
-    CaixaEmail: {
+    Caixatitulo: {
         borderColor: 'black',
         borderWidth: 5,
         backgroundColor: '#D3D3D3'
     },
-    Email: {
+    titulo: {
         color: 'black',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
 
 
     },
-    Senha: {
+    descricao: {
         color: 'black',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -152,4 +151,5 @@ const styles = StyleSheet.create({
     }
 
 });
-export default Tela_Cadastrar;
+
+

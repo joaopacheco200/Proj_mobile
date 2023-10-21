@@ -10,12 +10,16 @@ const Tela = ({ navigation }: HomeProps) => {
     const [isLoading, setIsLoading] = useState(false);
 
     function logar() {
-        setIsLoading(true);
-        auth()
-            .signInWithEmailAndPassword(email, senha)
-            .then(() => { navigation.navigate('Home') })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false))
+        if (email && senha) {
+
+
+            setIsLoading(true);
+            auth()
+                .signInWithEmailAndPassword(email, senha)
+                .then(() => { navigation.navigate('Entrou') })
+                .catch((error) => console.log(error))
+                .finally(() => setIsLoading(false))
+        }
     }
 
     function redefinirSenha() {
@@ -42,13 +46,13 @@ const Tela = ({ navigation }: HomeProps) => {
 
 
                     <Pressable style={styles.BotaoEntrar}
-                        onPress={() => navigation.navigate('Entrou')}>
+                        onPress={() => logar()}>
                         <Text style={styles.EntraBu}>Entrar</Text>
                     </Pressable>
 
                     <View style={styles.Butoes}>
                         <Pressable style={styles.BotaoEsqueci}
-                            onPress={() => navigation.navigate('Esqueci')}>
+                            onPress={() => redefinirSenha()}>
                             <Text style={styles.Butao}>Esqueci a senha</Text>
                         </Pressable>
 
