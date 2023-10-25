@@ -33,37 +33,43 @@ const Tela = ({ navigation }: HomeProps) => {
         <>
             <View style={styles.Cbum}>
 
-                <ImageBackground source={require('../assets/chis.jpeg')} style={styles.fundo}>
-                    <Text style={styles.Email}>Email:</Text>
 
-                    <TextInput style={styles.CaixaEmail}
-                        onChangeText={(text) => { setEmail(text) }} />
+                <Text style={styles.Email}>Email:</Text>
 
-                    <Text style={styles.Senha}>Senha:</Text>
+                <TextInput style={styles.CaixaEmail}
+                    onChangeText={(text) => { setEmail(text) }} />
 
-                    <TextInput style={styles.CaixaSenha}
-                        onChangeText={(text) => { setSenha(text) }} />
+                <Text style={styles.Senha}>Senha:</Text>
+
+                <TextInput style={styles.CaixaSenha}
+                    onChangeText={(text) => { setSenha(text) }} />
 
 
-                    <Pressable style={styles.BotaoEntrar}
-                        onPress={() => logar()}>
-                        <Text style={styles.EntraBu}>Entrar</Text>
+                <Pressable style={styles.BotaoEntrar}
+                    onPress={() => logar()}>
+                    <Text style={styles.EntraBu}>Entrar</Text>
+                </Pressable>
+
+                <View style={styles.Butoes}>
+                    <Pressable style={styles.BotaoEsqueci}
+                        onPress={() => redefinirSenha()}>
+                        <Text style={styles.Butao}>Esqueci a senha</Text>
                     </Pressable>
 
-                    <View style={styles.Butoes}>
-                        <Pressable style={styles.BotaoEsqueci}
-                            onPress={() => redefinirSenha()}>
-                            <Text style={styles.Butao}>Esqueci a senha</Text>
-                        </Pressable>
+
+                    <Pressable style={styles.BotaoCadastrar}
+                        onPress={() => navigation.navigate('Cadastrar')}>
+                        <Text style={styles.Butao}>Cadastrar</Text>
+                    </Pressable>
+
+                    <Pressable style={styles.BotaoCliente}
+                        onPress={() => navigation.navigate('CadastroClien')}>
+                        <Text style={styles.ButaoCli}>Cadastrar Cliente</Text>
+                    </Pressable>
+
+                </View>
 
 
-                        <Pressable style={styles.BotaoCadastrar}
-                            onPress={() => navigation.navigate('Cadastrar')}>
-                            <Text style={styles.Butao}>Cadastrar</Text>
-                        </Pressable>
-                    </View>
-
-                </ImageBackground>
             </View>
         </>
     );
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#D3D3D3'
     },
     Email: {
-        color: 'white',
+        color: 'black',
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 30,
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
 
     },
     Senha: {
-        color: 'white',
+        color: 'black',
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 30
@@ -155,6 +161,23 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'black',
         fontWeight: 'bold',
+
+    },
+    BotaoCliente: {
+        
+        backgroundColor: 'grey',
+        borderRadius: 100,
+        borderColor: 'grey',
+        borderWidth: 5,
+        fontSize: 30,
+        color: 'black',
+        fontWeight: 'bold',
+
+    },
+    ButaoCli: {
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 30,
 
     }
 

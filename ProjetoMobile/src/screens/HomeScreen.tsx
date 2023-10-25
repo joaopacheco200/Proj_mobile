@@ -9,8 +9,8 @@ const HomeScreen = ({ navigation, route }: HomeProps) => {
         <View style={{
             flex: 1,
         }}>
-                <Tela navigation={navigation} route={route}/>
-            {/* <Principal navigation={navigation} route={route} /> */}
+                 <Tela navigation={navigation} route={route}/> 
+             {/* <Principal navigation={navigation} route={route} />  */}
         </View>
     );
 };

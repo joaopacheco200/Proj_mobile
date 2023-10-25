@@ -6,31 +6,20 @@ import {
   View
 } from 'react-native';
 
-type Ex1Props = {
-    titulo: string;
-}
 
-const Ex1 = (props: Ex1Props) => {
+const Ex1 = () => {
     return <>
-        <View style={styles.container}>
-            <Text>{props.titulo}</Text>
-            <TextInput style={styles.caixaTexto}/>
+        <View>
+
+            <Text>TRABALHO NOTA 10</Text>
+            
         </View>
     </>
 }
 
 export default Ex1;
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'yellow',
-        borderWidth: 3,
-        borderColor: 'red'
-    },
-    caixaTexto: {
-        backgroundColor: 'white',
-        borderWidth: 3,
-        borderColor: 'orange'
 
-    }
-});
+
+
+

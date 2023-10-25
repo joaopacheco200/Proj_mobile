@@ -4,14 +4,14 @@ import Tela from '../layouts/Tela_Login';
 import Tela_Cadastrar from '../layouts/Tela_Cadastrar';
 import Tela_CadastroPodutos from '../layouts/Tela_Cadastrar';
 
-const CadastrarScreen = ({navigation,route}: CadastrarProps) => {
+const CadastrarProdScreen = ({navigation,route}: CadastrarProdProps) => {
   return (
     <View style={{
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <Tela_Cadastrar navigation={navigation} route={route}/>
+      <Tela_CadastroPodutos navigation={navigation} route={route}/>
       <Text>Cadastrar Screen</Text>
 
     </View>
@@ -19,4 +19,4 @@ const CadastrarScreen = ({navigation,route}: CadastrarProps) => {
 
 };
 
-export default CadastrarScreen;
+export default CadastrarProdScreen;

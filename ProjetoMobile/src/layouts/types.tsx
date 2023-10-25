@@ -8,6 +8,10 @@ type RootStackParamList = {
     Login: undefined;
     Confirmar: undefined;
     TelaListaNota:undefined;
+    CadastrarProduto:undefined;
+    Inicial:undefined;
+    Ex1:undefined;
+    CadastroClien:undefined;
   };
   
   type HomeProps = NativeStackScreenProps < RootStackParamList, 'Home'>;
@@ -22,5 +26,19 @@ type CadastrarProps = NativeStackScreenProps<RootStackParamList, 'Cadastrar'>;
 type ListarNotasProps = NativeStackScreenProps<RootStackParamList, 'TelaListaNota'>;
 
 
+type CadastrarProdProps = NativeStackScreenProps<RootStackParamList, 'CadastrarProduto'>;
 
-  export type {HomeProps, RootStackParamList, LoginProps, CadastrarProps, ListarNotasProps};
+type InicialProps = NativeStackScreenProps<RootStackParamList, 'Inicial'>;
+
+
+type Ex1Props = NativeStackScreenProps<RootStackParamList, 'Ex1'>;
+
+type CadastroCliProps = NativeStackScreenProps<RootStackParamList, 'CadastroClien'>;
+
+type EntrouProps = NativeStackScreenProps<RootStackParamList, 'Entrou'>;
+
+
+
+  export type {HomeProps, RootStackParamList, LoginProps, CadastrarProps, ListarNotasProps,
+  CadastrarProdProps, InicialProps,
+  Ex1Props, CadastroCliProps, EntrouProps};

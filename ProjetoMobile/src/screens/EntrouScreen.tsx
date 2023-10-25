@@ -1,6 +1,8 @@
 import { Text, View } from 'react-native';
+import Tela_Entrou from '../layouts/Tela_Entrou';
+import { EntrouProps } from '../layouts/types';
 
-const EntrouScreen = () => {
+const EntrouScreen = ({ navigation, route }: EntrouProps) => {
     return(
       <View style= {{
         flex: 1,
@@ -9,6 +11,7 @@ const EntrouScreen = () => {
     
           <Text>Entrou Screen</Text>
     
+   <Tela_Entrou navigation={navigation} route={route}/>
       </View>
     );
     

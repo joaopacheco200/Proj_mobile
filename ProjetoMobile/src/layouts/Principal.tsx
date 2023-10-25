@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -17,6 +18,8 @@ import ListaArma from './ListaNomes';
 import ExemploStylesText from './ExemploStylesText';
 import ExemploStylesView from './ExemploStyleView';
 import { HomeProps } from './types';
+import Tela_CadastroPodutos from './Tela_Cadastrar';
+import CadastrarProdScreen from '../screens/CadastrarProdScreen';
 
 
 
@@ -24,9 +27,9 @@ import { HomeProps } from './types';
 //   {key: 1, descricao: 'teste'},
 //   {key: 2, descricao: 'teste2'},
 //   {key: 3, descricao: 'teste3'},
-//   {key: 4, descricao: 'teste4'},
-//   {key: 5, descricao: 'teste5'}
-// ];
+//   {escricao: 'teste5'}
+// ];key: 4, descricao: 'teste4'},
+//   {key: 5, d
 
 // const listaSection = [
 // (title: 'A', data: [{key:1, descricao: 'Ana'}]),
@@ -56,12 +59,16 @@ const ArmasNome = [
 const Principal = ({navigation, route}: HomeProps) => {
   return(
     <>
-      <Button 
-      title="go to details"
-      onPress= {() => navigation.navigate('Detalhes')} />
-    <ExemploStylesText/>
-    <ExemploStylesView/>
-    <ListaArma array = {ArmasNome}/>
+
+     <Pressable 
+            onPress={() => navigation.navigate ('Ex1')}>
+            <Text >Componente Facil</Text>
+        </Pressable>
+
+        <Pressable 
+            onPress={() => navigation.navigate ('CadastrarProduto')}>
+            <Text >Cadastrar Produto</Text>
+        </Pressable>
     </>
   )
 }

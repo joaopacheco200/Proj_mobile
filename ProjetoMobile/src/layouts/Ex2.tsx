@@ -5,8 +5,12 @@ import {
     Image,
     View
 } from 'react-native';
+import { Ex2Props } from './types';
 
-const Ex2 = () => {
+
+
+
+const Ex2 = ( { navigation, route }: Ex2Props) => {
     return <ScrollView>
         <View style={styles.container}>
             <Image style={styles.imagem} source={{
