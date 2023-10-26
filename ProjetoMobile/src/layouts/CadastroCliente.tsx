@@ -1,30 +1,38 @@
 import firestore from "@react-native-firebase/firestore";
 import { useState } from "react";
 import { CadastroCliProps } from "./types";
-import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 
 const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
-    const [endereco, setEndereco] = useState('');
+    const [estado, setEstado] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [rua, setRua] = useState('');
     const [datanasc, setDatanasc] = useState('');
+    const [complemento, setComplemento] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     function cadastrarCli() {
         setIsLoading(true);
 
         firestore()
-            .collection('notas')
+            .collection('cliente')
             .add({
                 nome,
                 cpf,
-                endereco,
+                estado,
+                cidade,
+                bairro,
+                rua,
                 datanasc,
+                complemento,
                 created_at: firestore.FieldValue.serverTimestamp()
             })
 
             .then(() => {
-                Alert.alert("Nota", "Cadastrado com sucesso")
+                Alert.alert("Cliente", "Cadastrado com sucesso")
                 navigation.navigate('Home');
             })
             .catch((error) => console.log(error))
@@ -32,7 +40,7 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
 
     }
 
-  
+
 
 
 
@@ -40,39 +48,62 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
         <>
             <View>
 
+                <ScrollView>
+                    <Text style={styles.Nome}>Nome:</Text>
 
-                <Text style={styles.Nome}>Nome:</Text>
-
-                <TextInput style={styles.CaixaNome}
-                    onChangeText={(text) => { setNome(text) }} />
-
-
-                <Text style={styles.Cpf}>CPF:</Text>
-
-                <TextInput style={styles.CaixaCpf}
-                    onChangeText={(text) => { setCpf(text) }} />
+                    <TextInput style={styles.CaixaNome}
+                        onChangeText={(text) => { setNome(text) }} />
 
 
-                <Text style={styles.Endereco}>Endereço:</Text>
+                    <Text style={styles.Cpf}>CPF:</Text>
 
-                <TextInput style={styles.CaixaEndereco}
-                    onChangeText={(text) => { setEndereco(text) }} />
-
-
-                <Text style={styles.DataNasc}>Data de Nascimento:</Text>
-
-                <TextInput style={styles.CaixaDataNasc}
-                    onChangeText={(text) => { setDatanasc(text) }} />
+                    <TextInput style={styles.CaixaCpf}
+                        onChangeText={(text) => { setCpf(text) }} />
 
 
+                    <Text style={styles.Endereco}>Estado:</Text>
 
-                <Pressable style={styles.BotaoEntrar}
-                    onPress={() => cadastrarCli()}>
-                    <Text style={styles.ConfBu}>Confirmar</Text>
-                </Pressable>
-
+                    <TextInput style={styles.CaixaEndereco}
+                        onChangeText={(text) => { setEstado(text) }} />
 
 
+                    <Text style={styles.Endereco}>Cidade:</Text>
+
+                    <TextInput style={styles.CaixaEndereco}
+                        onChangeText={(text) => { setCidade(text) }} />
+
+
+                    <Text style={styles.Endereco}>Bairro:</Text>
+
+                    <TextInput style={styles.CaixaEndereco}
+                        onChangeText={(text) => { setBairro(text) }} />
+
+                    <Text style={styles.Endereco}>Rua:</Text>
+
+                    <TextInput style={styles.CaixaEndereco}
+                        onChangeText={(text) => { setRua(text) }} />
+
+
+                    <Text style={styles.DataNasc}>Data de Nascimento:</Text>
+
+                    <TextInput style={styles.CaixaDataNasc}
+                        onChangeText={(text) => { setDatanasc(text) }} />
+
+                    <Text style={styles.Nome}>Complemento:</Text>
+
+                    <TextInput style={styles.CaixaNome}
+                        onChangeText={(text) => { setComplemento(text) }} />
+
+
+
+
+                    <Pressable style={styles.BotaoEntrar}
+                        onPress={() => cadastrarCli()}>
+                        <Text style={styles.ConfBu}>Confirmar</Text>
+                    </Pressable>
+
+
+                </ScrollView>
 
             </View>
         </>
