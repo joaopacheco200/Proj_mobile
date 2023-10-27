@@ -30,12 +30,12 @@ export default ({ navigation, route }: AlterarClienteProps) => {
             } as IClientes;   
 
         setCpf(nota.cpf);
-        setNome(nota.nome)
+        setNome(nota.nome);
         setDatanasc(nota.datanasc);
-        setEstado(nota.estado)
-        setCidade(nota.cidade)
-        setBairro(nota.bairro)
-        setRua(nota.rua)
+        setEstado(nota.estado);
+        setCidade(nota.cidade);
+        setBairro(nota.bairro);
+        setRua(nota.rua);
     };
 
     useEffect(() => {
@@ -81,10 +81,30 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                 onChangeText={(text) => { setNome(text) }} />
             
 
-            <Text>Endereço</Text>
+            <Text>Estado:</Text>
             <TextInput
                 style={styles.caixa_texto}
-                onChangeText={(text) => { setEndereco(text) }} />
+                onChangeText={(text) => { setEstado(text) }} />
+
+
+            <Text>Cidade:</Text>
+            <TextInput
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setCidade(text) }} />
+
+
+            <Text>Bairro:</Text>
+            <TextInput
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setBairro(text) }} />
+
+
+            <Text>Rua:</Text>
+            <TextInput
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setRua(text) }} />
+
+            
            
 
             <Text>Data de Nascimento</Text>

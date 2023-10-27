@@ -12,7 +12,9 @@ type RootStackParamList = {
     Inicial:undefined;
     Ex1:undefined;
     CadastroClien:undefined;
-    ListarCliente:undefined;
+    ListarCliente:{buscarCli: (id: string, cpfCli: string, nomeCli: string) => void};
+    CadastrarAten:undefined;
+    ListarAten:undefined;
     AlterarCliente:{id: string;}
 
   };
@@ -44,9 +46,14 @@ type ListarClienteProps = NativeStackScreenProps<RootStackParamList, 'ListarClie
 
 type AlterarClienteProps = NativeStackScreenProps<RootStackParamList, 'AlterarCliente'>;
 
+type CadastroAtendimentoProps = NativeStackScreenProps<RootStackParamList, 'CadastrarAten'>;
+
+
+type ListarAtendimentoProps = NativeStackScreenProps<RootStackParamList, 'ListarAten'>;
+
 
 
 
   export type {HomeProps, RootStackParamList, LoginProps, CadastrarProps, ListarNotasProps,
   CadastrarProdProps, InicialProps,
-  Ex1Props, CadastroCliProps, EntrouProps, ListarClienteProps, AlterarClienteProps};
+  Ex1Props, CadastroCliProps, EntrouProps, ListarClienteProps, AlterarClienteProps, CadastroAtendimentoProps, ListarAtendimentoProps};

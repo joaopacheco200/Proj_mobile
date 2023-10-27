@@ -12,13 +12,15 @@ import Ex1 from "../layouts/Ex1";
 import Tela_CadastroCli from "../layouts/CadastroCliente";
 import CadastrarClienteScreen from "../screens/CadastroClienteScreen";
 import ListarClienteScreen from "../screens/ListarClienteScreen";
+import AlterarClienteScreen from "../screens/AlterarClienteScreen";
+import CadastroAtendimentoScreen from "../screens/CadastroAtendimentoScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const HomeNavigator = () => {
   return (
 
-    <Stack.Navigator initialRouteName="Entrou">
+    <Stack.Navigator initialRouteName="Home">
 
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Entrou" component={EntrouScreen} />
@@ -29,6 +31,8 @@ const HomeNavigator = () => {
       <Stack.Screen name="Ex1" component={Ex1} />
       <Stack.Screen name="CadastroClien" component={CadastrarClienteScreen} />
       <Stack.Screen name="ListarCliente" component={ListarClienteScreen} />
+      <Stack.Screen name="AlterarCliente" component={AlterarClienteScreen} />
+      <Stack.Screen name="CadastrarAten" component={CadastroAtendimentoScreen} />
 
     </Stack.Navigator>
 

@@ -6,6 +6,7 @@ import { ListarClienteProps, ListarNotasProps } from "./types";
 import alterarClientes from './alterarClientes';
 
 export default ({ navigation, route }: ListarClienteProps) => {
+    const [cpf, setcpf] = useState([] as IClientes[]);
     const [clientes, setClientes] = useState([] as IClientes[]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -48,11 +49,11 @@ export default ({ navigation, route }: ListarClienteProps) => {
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
 
-        
+
     }
 
-    function alterarCliente (id: string){
-        navigation.navigate("AlterarCliente", {id: id})
+    function alterarCliente(id: string) {
+        navigation.navigate("AlterarCliente", { id: id })
     }
 
     return (
@@ -66,25 +67,28 @@ export default ({ navigation, route }: ListarClienteProps) => {
 
                         <View style={styles.card}>
                             <ScrollView>
-                                <Text>{info.index}</Text>
-                                <Text>{info.item.cpf}</Text>
-                                <Text>{info.item.estado}</Text>
-                                <Text>{info.item.cidade}</Text>
-                                <Text>{info.item.bairro}</Text>
-                                <Text>{info.item.rua}</Text>
-                                <Text>{info.item.nome}</Text>
-                                <Text>{info.item.datanasc}</Text>
-
+                                <Pressable onPress={() => {
+                                    route.params.buscarCli && route.params.buscarCli(info.item.id, info.item.cpf,info.item.nome)
+                                }}>
+                                    <Text>{info.index}</Text>
+                                    <Text>{info.item.cpf}</Text>
+                                    <Text>{info.item.estado}</Text>
+                                    <Text>{info.item.cidade}</Text>
+                                    <Text>{info.item.bairro}</Text>
+                                    <Text>{info.item.rua}</Text>
+                                    <Text>{info.item.nome}</Text>
+                                    <Text>{info.item.datanasc}</Text>
+                                </Pressable>
 
                                 <View style={styles.botao_alterar}>
-                                <Pressable
-                                    onPress={() => alterarCliente(info.item.id)}>
-                                        <Text style={{fontWeight:"bold", fontSize: 40}}>
+                                    <Pressable
+                                        onPress={() => alterarCliente(info.item.id)}>
+                                        <Text style={{ fontWeight: "bold", fontSize: 40 }}>
                                             A
                                         </Text>
-                                </Pressable>
-                            </View>
-                            
+                                    </Pressable>
+                                </View>
+
 
                                 <View style={styles.botao_deletar}>
                                     <Pressable

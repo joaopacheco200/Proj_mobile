@@ -16,9 +16,15 @@ const Tela_Entrou = ({ navigation }: EntrouProps) => {
                     <Text style={styles.ButaoCli}>Listar Cliente</Text>
                 </Pressable>
 
-                <Pressable onPress={() => navigation.navigate('AlterarCliente', )}>
-                    <Text style={styles.ButaoCli}>Alterar Cliente</Text>
+                <Pressable onPress={() => navigation.navigate('CadastrarAten')}>
+                    <Text style={styles.ButaoCli}>Cadastrar Atendimento</Text>
                 </Pressable>
+
+                <Pressable onPress={() => navigation.navigate('ListarAten')}>
+                    <Text style={styles.ButaoCli}>Listar Atendimento</Text>
+                </Pressable>
+
+              
 
 
             </View>

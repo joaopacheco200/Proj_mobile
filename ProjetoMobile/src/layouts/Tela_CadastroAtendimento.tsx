@@ -1,44 +1,55 @@
+import { CadastroAtendimentoProps } from "./types";
 import firestore from "@react-native-firebase/firestore";
 import { useState } from "react";
 import { CadastroCliProps } from "./types";
-import { Alert, Pressable, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 
-const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
-    const [nome, setNome] = useState('');
+
+import { Alert, Pressable, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
+import TelaListaCliente from "./TelaListaCliente";
+const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
+    const [idCli, setidCli] = useState('');
+    const [nomeCli, setNomeCli] = useState('');
+    const [cpfCli, setCpfCli] = useState('');
+    const [dadosCli, setDadosCli] = useState('');
+    const [data, setData] = useState('');
+    const [hora, setHora] = useState('');
+    const [descricao, setDescricao] = useState('');
     const [cpf, setCpf] = useState('');
-    const [estado, setEstado] = useState('');
-    const [cidade, setCidade] = useState('');
-    const [bairro, setBairro] = useState('');
-    const [rua, setRua] = useState('');
-    const [datanasc, setDatanasc] = useState('');
-    const [complemento, setComplemento] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    function cadastrarCli() {
+    function cadastrarAtend() {
         setIsLoading(true);
 
         firestore()
-            .collection('cliente')
+            .collection('atendimento')
             .add({
-                nome,
+                idCli,
+                nomeCli,
+                cpfCli,
+                data,
+                hora,
+                descricao,
                 cpf,
-                estado,
-                cidade,
-                bairro,
-                rua,
-                datanasc,
-                complemento,
+
                 created_at: firestore.FieldValue.serverTimestamp()
             })
 
             .then(() => {
-                Alert.alert("Cliente", "Cadastrado com sucesso")
+                Alert.alert("Atendimento", "Cadastrado com sucesso")
                 navigation.navigate('Home');
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
 
     }
+
+    function selectCli(id: string, cpfCli: string, nomeCli: string) {
+        setCpfCli(cpfCli)
+        setNomeCli
+
+    }
+
+
 
 
 
@@ -49,57 +60,50 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
             <View>
 
                 <ScrollView>
-                    <Text style={styles.Nome}>Nome:</Text>
+
+
+
+                    <Text style={styles.Nome}>CPF:</Text>
+
+                    <TextInput style={styles.CaixaNome} editable={false}
+                        onChangeText={(text) => { setCpf(text) }} />
+
+                    <Pressable style={styles.BotaoEntrar}
+                        onPress={() => navigation.navigate('ListarCliente', {buscarCli: selectCli})}>
+                        <Text style={styles.ConfBu}>Listar Cliente</Text>
+                    </Pressable>
+
+
+                    <Text style={styles.Nome}>Dados do Cliente:</Text>
 
                     <TextInput style={styles.CaixaNome}
-                        onChangeText={(text) => { setNome(text) }} />
+                        onChangeText={(text) => { setDadosCli(text) }} />
 
 
-                    <Text style={styles.Cpf}>CPF:</Text>
+                    <Text style={styles.Cpf}>Data:</Text>
 
                     <TextInput style={styles.CaixaCpf}
-                        onChangeText={(text) => { setCpf(text) } } />
+                        onChangeText={(text) => { setData(text) }} />
 
 
-                    <Text style={styles.Endereco}>Estado:</Text>
-
-                    <TextInput style={styles.CaixaEndereco}
-                        onChangeText={(text) => { setEstado(text) }} />
-
-
-                    <Text style={styles.Endereco}>Cidade:</Text>
+                    <Text style={styles.Endereco}>Hora:</Text>
 
                     <TextInput style={styles.CaixaEndereco}
-                        onChangeText={(text) => { setCidade(text) }} />
+                        onChangeText={(text) => { setHora(text) }} />
 
 
-                    <Text style={styles.Endereco}>Bairro:</Text>
-
-                    <TextInput style={styles.CaixaEndereco}
-                        onChangeText={(text) => { setBairro(text) }} />
-
-                    <Text style={styles.Endereco}>Rua:</Text>
+                    <Text style={styles.Endereco}>Descrição:</Text>
 
                     <TextInput style={styles.CaixaEndereco}
-                        onChangeText={(text) => { setRua(text) }} />
+                        onChangeText={(text) => { setDescricao(text) }} />
 
-
-                    <Text style={styles.DataNasc}>Data de Nascimento:</Text>
-
-                    <TextInput style={styles.CaixaDataNasc}
-                        onChangeText={(text) => { setDatanasc(text) }} />
-
-                    <Text style={styles.Nome}>Complemento:</Text>
-
-                    <TextInput style={styles.CaixaNome}
-                        onChangeText={(text) => { setComplemento(text) }} />
 
 
 
 
                     <Pressable style={styles.BotaoEntrar}
-                        onPress={() => cadastrarCli()}>
-                        <Text style={styles.ConfBu}>Confirmar</Text>
+                        onPress={() => cadastrarAtend()}>
+                        <Text style={styles.ConfBu}>Cadastrar</Text>
                     </Pressable>
 
 
@@ -110,7 +114,7 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
     );
 };
 
-export default Tela_CadastroCli;
+export default Tela_CadastroAten;
 
 
 
