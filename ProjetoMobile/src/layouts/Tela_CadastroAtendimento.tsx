@@ -2,22 +2,35 @@ import { CadastroAtendimentoProps } from "./types";
 import firestore from "@react-native-firebase/firestore";
 import { useState } from "react";
 import { CadastroCliProps } from "./types";
-
-
 import { Alert, Pressable, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 import TelaListaCliente from "./TelaListaCliente";
+
 const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
     const [idCli, setidCli] = useState('');
     const [nomeCli, setNomeCli] = useState('');
     const [cpfCli, setCpfCli] = useState('');
-    const [dadosCli, setDadosCli] = useState('');
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
     const [descricao, setDescricao] = useState('');
     const [cpf, setCpf] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    function validar (): boolean {
+        // Use uma expressão regular para verificar se a string contém apenas números
+        if (!(/^[0-9]*$/.test(cpf))) {
+            Alert.alert('Erro', 'Digite somente números');
+            return false;
+        }
+
+        return true
+    };
+    
+
     function cadastrarAtend() {
+         if (!validar()){
+            return
+         }
+
         setIsLoading(true);
 
         firestore()
@@ -36,48 +49,43 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
 
             .then(() => {
                 Alert.alert("Atendimento", "Cadastrado com sucesso")
-                navigation.navigate('Home');
+                navigation.navigate('Entrou');
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
+     
 
     }
 
     function selectCli(id: string, cpfCli: string, nomeCli: string) {
         setCpfCli(cpfCli)
-        setNomeCli
+        setNomeCli(nomeCli)
+        setidCli(idCli)
 
     }
-
-
-
-
-
-
 
     return (
         <>
             <View>
-
                 <ScrollView>
-
-
-
                     <Text style={styles.Nome}>CPF:</Text>
 
-                    <TextInput style={styles.CaixaNome} editable={false}
-                        onChangeText={(text) => { setCpf(text) }} />
+                    <TextInput style={styles.CaixaNome}
+                        onChangeText={(text) => { setCpfCli(text) }}
+                        value={cpfCli}
+                        editable={false}
+                        keyboardType="numeric" />
 
                     <Pressable style={styles.BotaoEntrar}
-                        onPress={() => navigation.navigate('ListarCliente', {buscarCli: selectCli})}>
+                        onPress={() => navigation.navigate('ListarCliente', { buscarCli: selectCli })}>
                         <Text style={styles.ConfBu}>Listar Cliente</Text>
                     </Pressable>
 
 
-                    <Text style={styles.Nome}>Dados do Cliente:</Text>
+                    <Text style={styles.Nome}>Nome:</Text>
 
                     <TextInput style={styles.CaixaNome}
-                        onChangeText={(text) => { setDadosCli(text) }} />
+                        onChangeText={(text) => { setNomeCli(text) }} />
 
 
                     <Text style={styles.Cpf}>Data:</Text>
@@ -99,13 +107,13 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
 
 
 
+                    <View style={styles.viewCadAten}>
 
-
-                    <Pressable style={styles.BotaoEntrar}
-                        onPress={() => cadastrarAtend()}>
-                        <Text style={styles.ConfBu}>Cadastrar</Text>
-                    </Pressable>
-
+                        <Pressable
+                            onPress={() => cadastrarAtend()}>
+                            <Text style={styles.ConfBu}>Cadastrar</Text>
+                        </Pressable>
+                    </View>
 
                 </ScrollView>
 
@@ -223,8 +231,18 @@ const styles = StyleSheet.create({
         color: 'black',
         fontWeight: 'bold',
 
-    }
+    },
+    viewCadAten: {
+        textAlign: 'center',
+        backgroundColor: 'grey',
+        borderRadius: 100,
+        borderColor: 'grey',
+        borderWidth: 5,
+        color: 'black',
+        fontWeight: 'bold',
+        marginTop: 50
 
+    }
 });
 
 

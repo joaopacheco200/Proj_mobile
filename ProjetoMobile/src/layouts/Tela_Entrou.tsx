@@ -7,27 +7,33 @@ import auth from '@react-native-firebase/auth';
 const Tela_Entrou = ({ navigation }: EntrouProps) => {
     return (
         <>
-            <View style={styles.BotaoCliente}>
+            <View style={styles.BotaoCadCli}>
                 <Pressable onPress={() => navigation.navigate('CadastroClien')}>
                     <Text style={styles.ButaoCli}>Cadastrar Cliente</Text>
                 </Pressable>
 
+            </View>
+
+            <View style={styles.BotaoLisCli}>
+
                 <Pressable onPress={() => navigation.navigate('ListarCliente')}>
                     <Text style={styles.ButaoCli}>Listar Cliente</Text>
                 </Pressable>
+            </View>
+
+            <View style={styles.BotaoCadAtend}>
 
                 <Pressable onPress={() => navigation.navigate('CadastrarAten')}>
                     <Text style={styles.ButaoCli}>Cadastrar Atendimento</Text>
                 </Pressable>
 
-                <Pressable onPress={() => navigation.navigate('ListarAten')}>
-                    <Text style={styles.ButaoCli}>Listar Atendimento</Text>
-                </Pressable>
-
-              
-
-
             </View>
+
+
+            
+
+
+
         </>
     );
 
@@ -52,6 +58,36 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
 
+    },
+    BotaoCadCli: {
+        backgroundColor: 'grey',
+        borderRadius: 100,
+        borderColor: 'grey',
+        borderWidth: 5,
+        fontSize: 30,
+        color: 'black',
+        fontWeight: 'bold',
+        marginTop: 50
+    },
+    BotaoLisCli: {
+        backgroundColor: 'grey',
+        borderRadius: 100,
+        borderColor: 'grey',
+        borderWidth: 5,
+        fontSize: 30,
+        color: 'black',
+        fontWeight: 'bold',
+        marginTop: 50
+    },
+    BotaoCadAtend: {
+        backgroundColor: 'grey',
+        borderRadius: 100,
+        borderColor: 'grey',
+        borderWidth: 5,
+        fontSize: 30,
+        color: 'black',
+        fontWeight: 'bold',
+        marginTop: 50
     }
 
 });

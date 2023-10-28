@@ -10,11 +10,27 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
     const [cidade, setCidade] = useState('');
     const [bairro, setBairro] = useState('');
     const [rua, setRua] = useState('');
+    const [numero, setNumero] = useState('');
     const [datanasc, setDatanasc] = useState('');
     const [complemento, setComplemento] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    function validar (): boolean {
+        // Use uma expressão regular para verificar se a string contém apenas números
+        if (!(/^[0-9]*$/.test(cpf))) {
+            Alert.alert('Erro', 'Digite somente números');
+            return false;
+        }
+
+        return true
+    };
+
     function cadastrarCli() {
+        if (!validar()){
+            return
+         }
+
+
         setIsLoading(true);
 
         firestore()
@@ -26,6 +42,7 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
                 cidade,
                 bairro,
                 rua,
+                numero,
                 datanasc,
                 complemento,
                 created_at: firestore.FieldValue.serverTimestamp()
@@ -37,6 +54,8 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
+
+       
 
     }
 
@@ -58,7 +77,10 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
                     <Text style={styles.Cpf}>CPF:</Text>
 
                     <TextInput style={styles.CaixaCpf}
-                        onChangeText={(text) => { setCpf(text) } } />
+                        onChangeText={(text) => { setCpf(text) } } 
+                        value={cpf}
+                        
+                        keyboardType="numeric"/>
 
 
                     <Text style={styles.Endereco}>Estado:</Text>
@@ -82,6 +104,11 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
 
                     <TextInput style={styles.CaixaEndereco}
                         onChangeText={(text) => { setRua(text) }} />
+
+                    <Text style={styles.Endereco}>Numero:</Text>
+
+                    <TextInput style={styles.CaixaEndereco}
+                        onChangeText={(text) => { setNumero(text) }} />
 
 
                     <Text style={styles.DataNasc}>Data de Nascimento:</Text>

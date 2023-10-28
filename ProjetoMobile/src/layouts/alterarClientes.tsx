@@ -19,6 +19,7 @@ export default ({ navigation, route }: AlterarClienteProps) => {
     const [isLoading, setIsLoading] = useState(false);
 
     async function carregar(){
+        setIsLoading(true);
         const resultado = await firestore()
             .collection('clientes')
             .doc(id)
@@ -36,19 +37,25 @@ export default ({ navigation, route }: AlterarClienteProps) => {
         setCidade(nota.cidade);
         setBairro(nota.bairro);
         setRua(nota.rua);
+        setIsLoading(false);
     };
 
     useEffect(() => {
-        setIsLoading(true);
+        // setIsLoading(true);
         carregar();
 
     }, []);
 
+    
+
     function alterar() {
+
+        
+        
         setIsLoading(true);
 
         firestore()
-            .collection('clientes')
+            .collection('cliente')
             .doc(id)
             .update({
                 cpf,
@@ -57,15 +64,15 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                 cidade,
                 bairro,
                 rua,
-                datanasc,
-                created_at: firestore.FieldValue.serverTimestamp()
+                datanasc
             })
             .then(() => {
-                Alert.alert("clientes", "Cadastrada com sucesso")
+                Alert.alert("clientes", "Alterado com sucesso")
                 navigation.navigate('Home')
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
+
     }
 
     return (
@@ -73,12 +80,15 @@ export default ({ navigation, route }: AlterarClienteProps) => {
             <Text>CPF</Text>
             <TextInput
                 style={styles.caixa_texto}
-                onChangeText={(text) => { setCpf(text) }} />
+                onChangeText={(text) => { setCpf(text) }} 
+                
+                />
            
             <Text>Nome</Text>
             <TextInput
                 style={styles.caixa_texto}
-                onChangeText={(text) => { setNome(text) }} />
+                onChangeText={(text) => { setNome(text) }}
+                />
             
 
             <Text>Estado:</Text>

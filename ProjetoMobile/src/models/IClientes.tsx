@@ -8,6 +8,7 @@ export type IClientes = {
     nome: string,
     datanasc: string,
     complemento: string,
+    numero: string,
     created_at: Date
 
 }

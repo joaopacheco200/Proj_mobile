@@ -58,7 +58,7 @@ export default ({ navigation, route }: ListarClienteProps) => {
 
     return (
         <View>
-            <Text style={{ fontSize: 30 }}>Listagem de Notas</Text>
+            <Text style={{ fontSize: 30 }}>Listagem de Clientes</Text>
 
             <FlatList
                 data={clientes}
@@ -68,7 +68,8 @@ export default ({ navigation, route }: ListarClienteProps) => {
                         <View style={styles.card}>
                             <ScrollView>
                                 <Pressable onPress={() => {
-                                    route.params.buscarCli && route.params.buscarCli(info.item.id, info.item.cpf,info.item.nome)
+                                    route.params?.buscarCli(info.item.id, info.item.cpf,info.item.nome)
+                                    navigation.goBack();
                                 }}>
                                     <Text>{info.index}</Text>
                                     <Text>{info.item.cpf}</Text>

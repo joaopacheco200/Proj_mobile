@@ -9,7 +9,7 @@ const EntrouScreen = ({ navigation, route }: EntrouProps) => {
         alignItems: 'center',
         justifyContent: 'center'}}>
     
-          <Text>Entrou Screen</Text>
+   
     
    <Tela_Entrou navigation={navigation} route={route}/>
       </View>
