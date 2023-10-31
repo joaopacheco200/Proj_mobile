@@ -50,8 +50,7 @@ export default ({ navigation, route }: AlterarClienteProps) => {
 
     function alterar() {
 
-        
-        
+    
         setIsLoading(true);
 
         firestore()

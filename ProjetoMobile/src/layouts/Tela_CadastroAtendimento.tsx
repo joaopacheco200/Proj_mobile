@@ -4,11 +4,12 @@ import { useState } from "react";
 import { CadastroCliProps } from "./types";
 import { Alert, Pressable, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 import TelaListaCliente from "./TelaListaCliente";
+import ListaAtend from "./ListaAtend";
 
 const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
-    const [idCli, setidCli] = useState('');
-    const [nomeCli, setNomeCli] = useState('');
-    const [cpfCli, setCpfCli] = useState('');
+    const [idAtend, setidAtend] = useState('');
+    const [nomeAtend, setNomeAtend] = useState('');
+    const [cpfAtend, setCpfAtend] = useState('');
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -36,9 +37,9 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
         firestore()
             .collection('atendimento')
             .add({
-                idCli,
-                nomeCli,
-                cpfCli,
+                idAtend,
+                nomeAtend,
+                cpfAtend,
                 data,
                 hora,
                 descricao,
@@ -57,10 +58,10 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
 
     }
 
-    function selectCli(id: string, cpfCli: string, nomeCli: string) {
-        setCpfCli(cpfCli)
-        setNomeCli(nomeCli)
-        setidCli(idCli)
+    function selectCli(id: string, cpfAtendf: string, nomeAtende: string) {
+        setCpf(cpfAtend)
+        setNomeAtend(nomeAtend)
+        setidAtend(idAtend)
 
     }
 
@@ -71,8 +72,8 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
                     <Text style={styles.Nome}>CPF:</Text>
 
                     <TextInput style={styles.CaixaNome}
-                        onChangeText={(text) => { setCpfCli(text) }}
-                        value={cpfCli}
+                        onChangeText={(text) => { setCpfAtend(text) }}
+                        value={cpfAtend}
                         editable={false}
                         keyboardType="numeric" />
 
@@ -85,7 +86,7 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
                     <Text style={styles.Nome}>Nome:</Text>
 
                     <TextInput style={styles.CaixaNome}
-                        onChangeText={(text) => { setNomeCli(text) }} />
+                        onChangeText={(text) => { setNomeAtend(text) }} />
 
 
                     <Text style={styles.Cpf}>Data:</Text>
@@ -112,6 +113,15 @@ const Tela_CadastroAten = ({ navigation }: CadastroAtendimentoProps) => {
                         <Pressable
                             onPress={() => cadastrarAtend()}>
                             <Text style={styles.ConfBu}>Cadastrar</Text>
+                        </Pressable>
+                    </View>
+
+                    <View style={styles.viewCadAten}>
+
+                        <Pressable
+                            onPress={() => navigation.navigate('ListarAten')}>
+                            
+                            <Text style={styles.ConfBu}>Lista Atendimento</Text>
                         </Pressable>
                     </View>
 

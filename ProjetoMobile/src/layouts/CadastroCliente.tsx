@@ -50,7 +50,7 @@ const Tela_CadastroCli = ({ navigation }: CadastroCliProps) => {
 
             .then(() => {
                 Alert.alert("Cliente", "Cadastrado com sucesso")
-                navigation.navigate('Home');
+                navigation.navigate('Entrou');
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));

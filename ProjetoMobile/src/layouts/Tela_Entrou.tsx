@@ -1,12 +1,16 @@
-import { View, Text, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { EntrouProps, HomeProps } from './types';
-import LoginScreen from '../screens/LoginScreen';
+import ListarCliente from '../screens/ListarClienteScreen';
 import { useState } from 'react';
 import auth from '@react-native-firebase/auth';
 
 const Tela_Entrou = ({ navigation }: EntrouProps) => {
     return (
         <>
+            <Image source={require(
+            '../assets/Entrou.png'
+    )} />
+
             <View style={styles.BotaoCadCli}>
                 <Pressable onPress={() => navigation.navigate('CadastroClien')}>
                     <Text style={styles.ButaoCli}>Cadastrar Cliente</Text>
@@ -30,7 +34,7 @@ const Tela_Entrou = ({ navigation }: EntrouProps) => {
             </View>
 
 
-            
+
 
 
 

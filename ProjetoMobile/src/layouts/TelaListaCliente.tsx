@@ -44,7 +44,7 @@ export default ({ navigation, route }: ListarClienteProps) => {
             .delete()
             .then(() => {
                 Alert.alert("cliente", "Removido com sucesso")
-                navigation.navigate('Home')
+                navigation.navigate('Entrou')
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));

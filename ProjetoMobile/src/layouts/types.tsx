@@ -14,7 +14,7 @@ type RootStackParamList = {
     CadastroClien:undefined;
     ListarCliente:{buscarCli: (id: string, cpfCli: string, nomeCli: string) => void};
     CadastrarAten:undefined;
-    ListarAten:undefined;
+    ListarAten:{buscarAtend: (id: string, cpfAtend: string, nomeAtend: string) => void};
     AlterarCliente:{id: string;}
 
   };
